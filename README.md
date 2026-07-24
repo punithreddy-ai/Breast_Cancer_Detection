@@ -95,6 +95,57 @@ While this project currently runs as a script producing plots and reports, a nat
 
 This could be implemented as a lightweight Streamlit or Flask app, or a React frontend calling a small prediction API built on top of the trained model.
 
+## UI/UX Design (Proposed Diagnostic Assistant)
+
+While this project currently runs as a Python script, it's designed with a future-facing companion web interface in mind — a **Diagnostic Assistant** that lets a clinician or researcher enter tumor measurements and get an instant, explainable prediction.
+
+### Concept
+
+The interface is built around a single job: turn a handful of biopsy measurements into a clear, trustworthy read on malignancy risk — never a bare "yes/no," always shown with the model's confidence and the features that drove it.
+
+### Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Diagnostic Assistant                            [ ? ]  │
+├─────────────────────────────────┬───────────────────────┤
+│  Tumor Measurements              │   Result               │
+│                                   │                       │
+│  Radius (mean)      [ 14.2  ]    │   ● Benign             │
+│  Texture (mean)     [ 19.8  ]    │     97% confidence     │
+│  Perimeter (mean)   [ 91.3  ]    │                       │
+│  Area (mean)        [ 654.1 ]    │   Top contributing     │
+│  Smoothness (mean)  [ 0.096 ]    │   features:            │
+│  Concavity (mean)   [ 0.079 ]    │   • Worst area   ▓▓▓▓░ │
+│  Concave points     [ 0.052 ]    │   • Worst radius ▓▓▓░░ │
+│                                   │   • Worst conc.  ▓▓░░░ │
+│  [ Load sample case ▾ ]          │                       │
+│  [        Predict        ]       │   [ Export report ]   │
+└─────────────────────────────────┴───────────────────────┘
+```
+
+- **Left panel — input:** A clean form for the handful of features that matter most (rather than all 30), with sensible defaults and a "load sample case" dropdown for demos. Sliders paired with numeric fields let users feel the scale of each measurement, not just type numbers into a void.
+- **Right panel — result:** A single, unambiguous verdict (Benign / Malignant) paired with the model's confidence, plus a short ranked list of the features that most influenced the prediction — so the tool explains itself rather than acting as a black box.
+- **Tone:** Clinical, calm, and precise. No alarming colors or aggressive language — a soft green/amber/red indicator conveys risk level without being dramatic.
+
+### Visual Direction
+
+| Element | Choice | Why |
+|---|---|---|
+| Palette | Muted clinical blue (`#2C5F7C`) as primary, soft slate gray background (`#F5F7F8`), amber (`#D98E04`) and rose (`#C1495F`) reserved only for risk indicators | Keeps the tool feeling calm and trustworthy; color is used functionally (to signal risk), not decoratively |
+| Typography | A clean grotesk (e.g. Inter) for labels and data, with a slightly larger weight for the result verdict | Data-dense screens need legibility over personality |
+| Layout | Two-column split — inputs on the left, result on the right — so the "answer" is always visible while adjusting inputs | Encourages exploration (e.g. "what if area were slightly higher?") without losing context |
+| Signature element | A horizontal confidence bar next to the verdict, animated on prediction | Makes uncertainty visible at a glance, rather than hiding behind a single label |
+
+### Key UX Principles
+
+1. **Explainability first** — every prediction is shown with *why*, not just *what*, since this is a decision-support tool, not a black box.
+2. **Non-diagnostic framing** — the UI should visibly disclaim that this is a research/educational tool, not a certified medical device, and encourage confirmation by a qualified professional.
+3. **Low friction for exploration** — sample cases and sliders make it easy to explore "what if" scenarios without needing real patient data on hand.
+4. **Accessible by default** — sufficient color contrast, no reliance on color alone to convey risk (icons/labels reinforce it), and full keyboard navigation.
+
+*This section describes a proposed interface; it is not yet implemented. Contributions or mockups are welcome.*
+
 ## Possible Extensions
 
 - Hyperparameter tuning (`GridSearchCV`) for each model
