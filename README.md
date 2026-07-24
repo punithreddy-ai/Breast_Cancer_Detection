@@ -1,5 +1,13 @@
 # Breast Cancer Detection
 
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.8-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-3.0-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Accuracy](https://img.shields.io/badge/Best%20Accuracy-98.2%25-2ECC71?style=for-the-badge)
+![ROC AUC](https://img.shields.io/badge/ROC--AUC-0.995-2ECC71?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Educational%20Project-D98E04?style=for-the-badge)
+
 A machine learning project that classifies breast tumors as **malignant** or **benign** using the Wisconsin Diagnostic Breast Cancer (WDBC) dataset. This dataset is the same one hosted on the [UCI Machine Learning Repository (ID 17)](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic) and is also bundled directly with scikit-learn (`sklearn.datasets.load_breast_cancer`).
 
 ## Overview
