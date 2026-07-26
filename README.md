@@ -1,7 +1,5 @@
 <div align="center">
-
-<img src="banner.svg" alt="Breast Cancer Detection banner" width="100%"/>
-
+   
 # 🎗️ Breast Cancer Detection
 
 ### Machine learning–powered diagnosis support using the Wisconsin Diagnostic Breast Cancer dataset
